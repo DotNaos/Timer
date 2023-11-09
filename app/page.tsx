@@ -6,10 +6,15 @@ import { button as buttonStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
+import CountdownClock from "@/components/Clock";
 
 export default function Home() {
-	return (
-    <div> 
-    </div>
+
+
+
+  return (
+    <div className="w-screen h-screen flex justify-center items-center">
+        <CountdownClock />
+      </div>
   );
 }
