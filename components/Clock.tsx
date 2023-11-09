@@ -34,7 +34,7 @@ const CountdownClock = () => {
 
   return (
     <>
-      <div className="relative flex items-center justify-between gap-8 w-full h-full">
+      <div className="relative flex items-center justify-evenly gap-8 w-full h-full overflow-scroll">
         <Slot range={365} value={days} />
         <Slot range={60} value={hours} />
         <Slot range={60} value={minutes} />
