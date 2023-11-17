@@ -1,63 +1,58 @@
 import { motion } from "framer-motion";
 import { start } from "repl";
 
-export default function Slot({ range, value }: { range: number, value: number}) {
-  const step = 360 / range;
-  const pointsArray = Array.from({ length: range+1, }, (_, i) => i);
+export default function Slot({
+  range,
+  value,
+}: {
+  range: number;
+  value: number;
+}) {
+  const length = range.toString().length;
 
+  const points = 8;
+  const slotsArray = Array.from({ length: points }, (_, i) => i);
+  const steps = 360 / points;
 
   return (
-    <div className="relative flex flex-col items-center  text-center justify-center bg-gradient-to-t from-black to-black via-[#FFFFFF2F] w-min py-8 h-full">
-      {pointsArray.map((i) => {
-        const mid = Math.floor(range / 2);
+    <div
+      className="
+    relative
+    bg-gradient-to-t from-black to-black via-[#FFFFFF2F]
+    "
+    >
+      {slotsArray.map((i) => {
+        i = i - Math.floor(points / 2);
+        // calculate the difference between the value and i with using the shortest path
+        // If the value is near a boundary, the shortest path is to go through 0
 
-        const midSub = mid - i;
-
-        const midDist = Math.abs(midSub);
-
-        const slots: number = 3;
-
-        if (midDist > Math.max(slots - 2, 1)) {
-          return null;
-        }
-
-        const out = Math.max(value - midSub, 0);
-
-
-        const sub = midSub ;
-        const dist = Math.abs(sub);
-
-        // console.log(midSub);
+        const out = Math.abs(value + i);
 
 
 
-        // console.log(value);
+
 
         return (
           <motion.div
             key={i}
-            className="relative w-min h-min pt-12
-            py-8
-            px-8 text-xl font-mono [backface-visibility: hidden]
+            className="
+            absolute w-min h-min
+            pt-12 py-8 px-8
+            text-xl font-mono text-center
             bg-gradient-to-t from-default-50 to-default-50 via-default-100
             border-x border-default-500 border-opacity-20
             "
             style={{
               originZ: -350,
-              // opacity: 0,
-              // rotateX: sub * 60,
-              // y: (sub * 300) + 300,
+              rotateX: steps * i,
+
             }}
-            animate={
-              {
-                // rotateX: sub * 45,
-                // y: (sub * 300) + 300,
-                // opacity: dist == 0 ? 1 : dist == 1 ? 0.5 : 0,
-              }
-            }
+            animate={{
+              rotateX: steps * (i + 1),
+            }}
             transition={{ type: "ease", duration: 0.5 }}
           >
-            {out.toString().padStart(range >= 100 ? 3 : 2, "0")}
+            {/* {out.toString().padStart(length, "0")} */}
           </motion.div>
         );
       })}
