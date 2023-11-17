@@ -3,32 +3,23 @@ import { motion } from "framer-motion";
 import { Dispatch, useState } from "react";
 import { start } from "repl";
 
-export default function Slot({
-  range,
-  time,
-}: {
-  range: number;
-  time: number;
-}) {
+export default function Slot({ range, time }: { range: number; time: number }) {
   const length = range.toString().length;
 
   const points = 8;
-  const slotsArray: Array<number> = (() => {
-    const tmp = [];
-    for (let i = -Math.floor(points / 2); i < Math.floor(points / 2); i++) {
-      tmp.push(time - i);
-    }
-    return tmp;
-  })();
+  const slotsArray = Array.from({ length: range }, (_, i) => i);
 
   const steps = 360 / points;
 
-  const clamp = (number: number) =>  (number + range) % range;
+  const clamp = (number: number) => (number + range) % range;
 
+  const distToMax = (number: number) => range - number;
+  const distToMin = (number: number) => number;
 
+  const minDist = (number: number) => Math.min(Math.abs(number - time), Math.abs(range - number + time));
+  const progress = (i : number = 0) =>  range - time + i;
 
-
-
+  console.log("\n\n")
 
   return (
     <div className="flex">
@@ -38,20 +29,23 @@ export default function Slot({
     bg-gradient-to-t from-black to-black via-[#FFFFFF2F]
     "
       >
-        {slotsArray.map((value, i) => {
-          const out = clamp(value);
+        {slotsArray.map((i) => {
 
-          const dist = Math.abs(time - value);
+          const sub = time - i;
+          const dist = Math.abs(sub);
+          console.log(sub)
 
-          const progress = range - value;
 
-          const rotation = steps * progress;
 
-          if (dist > 1) {
+
+          const rotation =  sub * steps;
+
+          if (minDist(i) > 2) {
             return null;
           }
+          const out = clamp(i);
 
-          console.log(progress);
+
 
           return (
             <motion.div
@@ -65,7 +59,6 @@ export default function Slot({
             "
               style={{
                 originZ: -350,
-                zIndex: 1 - dist,
               }}
               animate={{
                 rotateX: rotation,
@@ -77,6 +70,7 @@ export default function Slot({
           );
         })}
       </div>
+
       <div className="absolute left-0 bottom-0 pb-10 pl-10 text-9xl flex flex-col">
         <span>{clamp(time - 2)}</span>
         <span>{clamp(time - 1)}</span>
@@ -85,7 +79,7 @@ export default function Slot({
         <span>{clamp(time + 2)}</span>
       </div>
       <Progress
-        value={time}
+        value={range - time}
         maxValue={range}
         className="absolute bottom-0 left-0"
       />
