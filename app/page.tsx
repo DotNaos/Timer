@@ -7,14 +7,16 @@ import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon } from "@/components/icons";
 import CountdownClock from "@/components/Clock";
+import CountdownApp from "@/components/test";
 
 export default function Home() {
 
 
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center">
+    <div className="w-screen h-screen flex justify-center items-center overflow-hidden">
         <CountdownClock />
+        {/* <CountdownApp/> */}
       </div>
   );
 }

@@ -8,6 +8,7 @@ import Slot from "./Slot";
 const CountdownClock = () => {
   const [countdown, setCountdown] = useState(0);
 
+
   useEffect(() => {
     const targetDate = new Date("2024-04-19T00:00:00Z").getTime();
 
@@ -34,11 +35,11 @@ const CountdownClock = () => {
 
   return (
     <>
-      <div className="relative flex items-center justify-evenly gap-8 w-full h-full overflow-scroll">
-        <Slot range={365} value={days} />
-        <Slot range={60} value={hours} />
-        <Slot range={60} value={minutes} />
-        <Slot range={60} value={seconds} />
+      <div className="relative flex items-center justify-evenly gap-8 w-full h-full ">
+        {/* <Slot range={365} time={days} />
+        <Slot range={60} time={hours} />
+        <Slot range={60} time={minutes} /> */}
+        <Slot range={60} time={seconds} />
       </div>
     </>
   );
