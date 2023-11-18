@@ -37,11 +37,9 @@ const CountdownClock = () => {
 
   return (
     <div
-      className="flex items-center justify-around
-      w-[90vw] h-[6vh]
-      bg-gradient-to-b from-[#1a2ffb] to-[#1a2ffb] via-[#2b3ffcEE]
-       rounded-full
-       shadow-lg shadow-[#2b3ffcEE]
+      className="relative flex items-center justify-around
+      w-screen h-screen overflow-clip
+
       "
       // onMouseMove={(e) => {
       //   setMouseX(e.clientX);
@@ -52,6 +50,8 @@ const CountdownClock = () => {
       <Slot range={60} time={hours} />
       <Slot range={60} time={minutes} />
       <Slot range={60} time={seconds} />
+
+
 
       {/* <motion.div className="absolute w-1/2 rounded-full aspect-square overflow-hidden left-0 opacity-50 blur-[50px]"
         animate={{
