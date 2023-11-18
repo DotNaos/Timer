@@ -25,11 +25,12 @@ export default function Slot({ range, time }: { range: number; time: number }) {
       className="
     relative
     w-full h-full
+
     "
     >
       {slotsArray.map((i) => {
         const sub = time - i;
-        const rotation = sub * steps;
+        const rotation = sub * 30;
 
         if (minDist(i) > 2) {
           return null;
@@ -47,29 +48,30 @@ export default function Slot({ range, time }: { range: number; time: number }) {
             transform -translate-x-1/2 -translate-y-1/2
             flex justify-center items-center
 
-            text-[5vw]
+            text-[6vw]
             rounded-[2vw]
 
             font-mono font-black text-center
             bg-default-50
+            bg-opacity-70 backdrop-blur-md
 
             "
             style={{
-              zIndex: 1 - minDist(i),
-              originZ: "-15vw",
+              zIndex: 10 - minDist(i),
+              originZ: "-30vw",
               translateX: "-50%",
               translateY: "-50%",
               opacity: 0,
-              rotateX: 0,
+              rotateX: rotation,
               perspective: 1000,
               color: "#FFFFFF11",
             }}
             animate={{
-              z: 1 - minDist(i),
+              z: 10 - minDist(i),
               rotateX: rotation,
               opacity: minDist(i) < 2 ? 1 : 0,
               color: minDist(i) < 1 ? "white" : "#FFFFFF11",
-              scale: minDist(i) < 1 ? 1.3 : 1,
+              scale: minDist(i) < 1 ? 1 : .5,
             }}
             transition={{ type: "spring", duration: 1 }}
           >

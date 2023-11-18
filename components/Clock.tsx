@@ -8,7 +8,6 @@ import Slot from "./Slot";
 const CountdownClock = () => {
   const [countdown, setCountdown] = useState(0);
 
-
   useEffect(() => {
     const targetDate = new Date("2024-04-19T00:00:00Z").getTime();
 
@@ -37,24 +36,24 @@ const CountdownClock = () => {
   const [mouseY, setMouseY] = useState(0);
 
   return (
-
-      <div
-        className="flex items-center justify-center
-      bg-default rounded-2xl  backdrop-blur-2xl bg-opacity-5
-      w-4/5 h-4/5
-
+    <div
+      className="flex items-center justify-around
+      w-[90vw] h-[6vh]
+      bg-gradient-to-b from-[#1a2ffb] to-[#1a2ffb] via-[#2b3ffcEE]
+       rounded-full
+       shadow-lg shadow-[#2b3ffcEE]
       "
-        // onMouseMove={(e) => {
-        //   setMouseX(e.clientX);
-        //   setMouseY(e.clientY);
-        // }}
-      >
-        <Slot range={365} time={days} />
-        <Slot range={60} time={hours} />
-        <Slot range={60} time={minutes} />
-        <Slot range={60} time={seconds} />
+      // onMouseMove={(e) => {
+      //   setMouseX(e.clientX);
+      //   setMouseY(e.clientY);
+      // }}
+    >
+      <Slot range={365} time={days} />
+      <Slot range={60} time={hours} />
+      <Slot range={60} time={minutes} />
+      <Slot range={60} time={seconds} />
 
-        {/* <motion.div className="absolute w-1/2 rounded-full aspect-square overflow-hidden left-0 opacity-50 blur-[50px]"
+      {/* <motion.div className="absolute w-1/2 rounded-full aspect-square overflow-hidden left-0 opacity-50 blur-[50px]"
         animate={{
           x: mouseX - 100,
           y: mouseY - 100,
@@ -70,7 +69,7 @@ const CountdownClock = () => {
           <div className="absolute w-full h-full bg-white z-10 backdrop-blur-3xl blur-[200px] rounded-full "></div>
           <div className="absolute w-full h-full bg-blue-300 rounded-full"></div>
         </motion.div> */}
-      </div>
+    </div>
   );
 };
 

@@ -34,6 +34,7 @@ import { GoDotFill } from "react-icons/go";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { HiMenuAlt4 } from "react-icons/hi";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
 export const Navbar = () => {
 
 	const [dateHovered, setDateHovered] = useState(false);
@@ -43,14 +44,17 @@ export const Navbar = () => {
     <NextUINavbar
       maxWidth="full"
       className="absolute bg-transparent bg-opacity-0 text-default px-[3vw] py-[1vw]"
-			isBlurred={false}
+      isBlurred={false}
     >
-      <NavbarContent className="text-[2.5vw] text-center" justify="start">
+      <NavbarContent
+        className="lg:text-[3vw] md:text-[4vw] sm:text-[5vw] text-[6vw] text-center font-medium"
+        justify="start"
+      >
         ABI Timer
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem>
+        <NavbarItem className="hidden sm:flex">
           <Button
             className="bg-[#2b2e3a] rounded-full uppercase hover:bg-[#0016ec] overflow-hidden"
             onMouseEnter={() => {
@@ -81,27 +85,46 @@ export const Navbar = () => {
             </motion.div>
           </Button>
         </NavbarItem>
-        <NavbarItem>
-          <Button
-            className="bg-[#e4e6ef] rounded-full text-default hover:bg-white"
-            onMouseEnter={() => {
-              setMenuHovered(true);
-            }}
-            onMouseLeave={() => {
-              setMenuHovered(false);
-            }}
-          >
-            Menu
-            <motion.div
-              animate={{
-                rotateZ: menuHovered ? 90 : 0,
-                scale: menuHovered ? 1.25 : 1,
-              }}
-            >
-              <HiMenuAlt4 />
-            </motion.div>
-          </Button>
-        </NavbarItem>
+
+        <Dropdown
+          placement="bottom-end"
+          className="bg-white text-8xl uppercase text-default font-bold"
+
+        >
+          <NavbarItem>
+            <DropdownTrigger>
+              <Button
+                className="bg-[#e4e6ef] rounded-full text-default hover:bg-white"
+                onMouseEnter={() => {
+                  setMenuHovered(true);
+                }}
+                onMouseLeave={() => {
+                  setMenuHovered(false);
+                }}
+              >
+                Menu
+                <motion.div
+                  animate={{
+                    rotateZ: menuHovered ? 90 : 0,
+                    scale: menuHovered ? 1.25 : 1,
+                  }}
+                >
+                  <HiMenuAlt4 />
+                </motion.div>
+              </Button>
+            </DropdownTrigger>
+          </NavbarItem>
+          <DropdownMenu>
+            <DropdownItem>Hier</DropdownItem>
+            <DropdownItem>könnte</DropdownItem>
+            <DropdownItem>ihre</DropdownItem>
+            <DropdownItem>Werbung</DropdownItem>
+            <DropdownItem>stehen</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+        <NavbarMenu>
+          <NavbarMenuItem></NavbarMenuItem>
+        </NavbarMenu>
       </NavbarContent>
     </NextUINavbar>
   );
