@@ -13,76 +13,70 @@ export default function Slot({ range, time }: { range: number; time: number }) {
 
   const clamp = (number: number) => (number + range) % range;
 
-  const distToMax = (number: number) => range - number;
-  const distToMin = (number: number) => number;
+  const minSub = (number: number) => Math.min(number - time, range - number + time);
 
   const minDist = (number: number) => Math.min(Math.abs(number - time), Math.abs(range - number + time));
-  const progress = (i : number = 0) =>  range - time + i;
+
 
   console.log("\n\n")
 
   return (
-    <div className="flex">
-      <div
-        className="
+    <div
+      className="
     relative
-    bg-gradient-to-t from-black to-black via-[#FFFFFF2F]
+    w-full h-full
     "
-      >
-        {slotsArray.map((i) => {
+    >
+      {slotsArray.map((i) => {
+        const sub = time - i;
+        const rotation = sub * steps;
 
-          const sub = time - i;
-          const dist = Math.abs(sub);
-          console.log(sub)
+        if (minDist(i) > 2) {
+          return null;
+        }
 
+        const out = clamp(i);
 
-
-
-          const rotation =  sub * steps;
-
-          if (minDist(i) > 2) {
-            return null;
-          }
-          const out = clamp(i);
-
-
-
-          return (
-            <motion.div
-              key={i}
-              className="
+        return (
+          <motion.div
+            key={i}
+            className="
             absolute w-min h-min
-             py-8 px-8
-            text-xl font-mono text-center
-            bg-gradient-to-t from-default-50 to-default-50 via-default-100
-            border-x border-default-500 border-opacity-20
-            "
-              style={{
-                originZ: -350,
-              }}
-              animate={{
-                rotateX: rotation,
-              }}
-              transition={{ type: "spring", duration: 0.5 }}
-            >
-              {out.toString().padStart(length, "0")}
-            </motion.div>
-          );
-        })}
-      </div>
+            px-[2vw]
+            left-1/2 top-1/2
+            transform -translate-x-1/2 -translate-y-1/2
+            flex justify-center items-center
 
-      <div className="absolute left-0 bottom-0 pb-10 pl-10 text-9xl flex flex-col">
-        <span>{clamp(time - 2)}</span>
-        <span>{clamp(time - 1)}</span>
-        <span className="font-black text-red-500">{time}</span>
-        <span>{clamp(time + 1)}</span>
-        <span>{clamp(time + 2)}</span>
-      </div>
-      <Progress
-        value={range - time}
-        maxValue={range}
-        className="absolute bottom-0 left-0"
-      />
+            text-[5vw]
+            rounded-[2vw]
+
+            font-mono font-black text-center
+            bg-default-50
+
+            "
+            style={{
+              zIndex: 1 - minDist(i),
+              originZ: "-15vw",
+              translateX: "-50%",
+              translateY: "-50%",
+              opacity: 0,
+              rotateX: 0,
+              perspective: 1000,
+              color: "#FFFFFF11",
+            }}
+            animate={{
+              z: 1 - minDist(i),
+              rotateX: rotation,
+              opacity: minDist(i) < 2 ? 1 : 0,
+              color: minDist(i) < 1 ? "white" : "#FFFFFF11",
+              scale: minDist(i) < 1 ? 1.3 : 1,
+            }}
+            transition={{ type: "spring", duration: 1 }}
+          >
+            <span className="z-10">{out.toString().padStart(length, "0")}</span>
+          </motion.div>
+        );
+      })}
     </div>
   );
 }

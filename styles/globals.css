@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Aeonik';
+  src: url("../public/Aeonik-Medium.woff2");
+}
+
+@font-face {
+  font-family: 'IBMPlexMono';
+  src: url("../public/IBMPlexMono-Medium.woff2");
+  font-weight: bold;
+}

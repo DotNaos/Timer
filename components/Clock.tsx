@@ -33,15 +33,44 @@ const CountdownClock = () => {
   const minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((countdown % (1000 * 60)) / 1000);
 
+  const [mouseX, setMouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
+
   return (
-    <>
-      <div className="relative flex items-center justify-evenly gap-8 w-full h-full ">
-        {/* <Slot range={365} time={days} />
+
+      <div
+        className="flex items-center justify-center
+      bg-default rounded-2xl  backdrop-blur-2xl bg-opacity-5
+      w-4/5 h-4/5
+
+      "
+        // onMouseMove={(e) => {
+        //   setMouseX(e.clientX);
+        //   setMouseY(e.clientY);
+        // }}
+      >
+        <Slot range={365} time={days} />
         <Slot range={60} time={hours} />
-        <Slot range={60} time={minutes} /> */}
+        <Slot range={60} time={minutes} />
         <Slot range={60} time={seconds} />
+
+        {/* <motion.div className="absolute w-1/2 rounded-full aspect-square overflow-hidden left-0 opacity-50 blur-[50px]"
+        animate={{
+          x: mouseX - 100,
+          y: mouseY - 100,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 20,
+          duration: 0.5,
+        }
+      }
+        >
+          <div className="absolute w-full h-full bg-white z-10 backdrop-blur-3xl blur-[200px] rounded-full "></div>
+          <div className="absolute w-full h-full bg-blue-300 rounded-full"></div>
+        </motion.div> */}
       </div>
-    </>
   );
 };
 

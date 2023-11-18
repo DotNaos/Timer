@@ -30,22 +30,21 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" suppressHydrationWarning>
-			<head/>
-			<body
-				className={clsx(
-					"min-h-screen bg-background font-sans antialiased m-0 p-0 inset-0",
-					fontSans.variable
-				)}
-			>
-				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="h-screen w-screen">
-						<main>
-						{children}
-						</main>
-					</div>
-				</Providers>
-			</body>
-		</html>
-	);
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body
+        className={clsx(
+          "min-h-screen bg-background font-sans antialiased m-0 p-0 inset-0",
+          fontSans.variable
+        )}
+      >
+        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+          <div className="h-screen w-screen bg-[#f0f1fa]">
+						<Navbar />
+            <main>{children}</main>
+          </div>
+        </Providers>
+      </body>
+    </html>
+  );
 }
