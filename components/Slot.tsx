@@ -38,6 +38,7 @@ export default function Slot({ range, time }: { range: number; time: number }) {
 
         const out = clamp(i);
 
+
         return (
           <motion.div
             key={i}
