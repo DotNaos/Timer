@@ -35,10 +35,15 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
-export const Navbar = () => {
+export const Navbar = ({onButtonClick} : {onButtonClick : any }) => {
 
 	const [dateHovered, setDateHovered] = useState(false);
 	const [menuHovered, setMenuHovered] = useState(false);
+
+
+
+
+
 
   return (
     <NextUINavbar
@@ -63,6 +68,7 @@ export const Navbar = () => {
             onMouseLeave={() => {
               setDateHovered(false);
             }}
+            onClick={onButtonClick}
           >
             <motion.div
               animate={{
@@ -72,7 +78,7 @@ export const Navbar = () => {
             >
               <FaArrowRightLong />
             </motion.div>
-            <motion.div>Pick Date</motion.div>
+            <motion.div>RAINBOW</motion.div>
 
             <motion.div
               animate={{

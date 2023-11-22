@@ -32,8 +32,6 @@ const CountdownClock = () => {
   const minutes = Math.floor((countdown % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((countdown % (1000 * 60)) / 1000);
 
-  const [mouseX, setMouseX] = useState(0);
-  const [mouseY, setMouseY] = useState(0);
 
   return (
     <div

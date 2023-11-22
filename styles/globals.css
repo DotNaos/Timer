@@ -12,3 +12,10 @@
   src: url("../public/IBMPlexMono-Medium.woff2");
   font-weight: bold;
 }
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url();
+}
+
+
