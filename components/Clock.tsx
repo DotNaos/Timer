@@ -37,9 +37,12 @@ const CountdownClock = () => {
 
   return (
     <div
-      className="relative flex items-center justify-around
+      className="relative grid-cols-2
+      sm:grid-cols-4
+      grid
+      items-center justify-center
       w-screen h-screen overflow-clip
-
+      pt-[5vh]
       "
       // onMouseMove={(e) => {
       //   setMouseX(e.clientX);
@@ -47,7 +50,7 @@ const CountdownClock = () => {
       // }}
     >
       <Slot range={365} time={days} />
-      <Slot range={60} time={hours} />
+      <Slot range={24} time={hours} />
       <Slot range={60} time={minutes} />
       <Slot range={60} time={seconds} />
 

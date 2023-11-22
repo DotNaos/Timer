@@ -45,29 +45,48 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+
+
+
   return (
-    <div className="countdown">
-      <div className="slot">
-        <motion.div className="number prev">{prevDays}</motion.div>
-        <motion.div className="number current">{countdown.days}</motion.div>
-      </div>
-
-      <div className="slot">
-        <motion.div className="number prev">{prevHours}</motion.div>
-        <motion.div className="number current">{countdown.hours}</motion.div>
-      </div>
-
-      <div className="slot">
-        <motion.div className="number prev">{prevMins}</motion.div>
-        <motion.div className="number current">{countdown.minutes}</motion.div>
-      </div>
-
-      <div className="slot">
-        <motion.div className="number prev">{prevSecs}</motion.div>
-        <motion.div className="number current">{countdown.seconds}</motion.div>
-      </div>
+    <div className="flex w-full h-full pt-[50vh] justify-center items-start text-black font-mono">
+        <Col value={countdown.days} range={365} />
+        <Col value={countdown.hours} range={24} />
+        <Col value={countdown.minutes} range={60} />
+        <Col value={countdown.seconds} range={60} />
     </div>
   );
 }
-
 export default App;
+
+
+function Col({ value, range } : { value: number, range: number }) {
+    const genDigits = (range: number) => {
+      let digits = "";
+
+      for (let i = 0; i < range + 1; i++) {
+        const digit = i.toString().padStart(range > 100 ? 3 : 2, "0");
+        digits += " " + digit;
+      }
+
+      return digits;
+    };
+
+    const digit = genDigits(range);
+
+  return (
+      <motion.div className="flex w-min h-[200vw] text-[15vw] overflow-hidden"
+        style={{
+          transform: `translateY(-${2*value}vh)`,
+        }
+        }
+
+        animate={{
+          // translateY: `-${1*value}vh`,
+        }}
+      >
+        {digit}
+        {/* {value} */}
+      </motion.div>
+  );
+}

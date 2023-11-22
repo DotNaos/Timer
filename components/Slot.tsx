@@ -20,18 +20,23 @@ export default function Slot({ range, time }: { range: number; time: number }) {
     Math.min(Math.abs(number - time), Math.abs(range - number + time));
 
   console.log("\n\n");
-
+  // h-[70vh]
   return (
     <div
       className={`
     relative
-    h-[70vh]
+    left-1/2 -translate-x-1/2
+
     rounded-[2vw]
     m-1
     bg-gradient-to-r
     from-default-200 to-default-200 via-default-100
     shadow-lg shadow-default-200
-    `.concat(length == 3 ? "w-[14vw]" : "w-[10vw]")}
+    `.concat(
+        length == 3
+          ? "w-[14vw] aspect-[2/5]"
+          : "w-[10vw]  aspect-[2/7]"
+      )}
     >
       {slotsArray.map((i) => {
         const sub = time - i;
@@ -68,7 +73,7 @@ export default function Slot({ range, time }: { range: number; time: number }) {
               translateX: "-50%",
               translateY: "-50%",
               opacity: 0,
-              y: pos,
+              y: `${pos / 14}vw`,
               // rotateX: rotation,
               perspective: 1000,
               color: "#FFFFFF11",
@@ -76,7 +81,7 @@ export default function Slot({ range, time }: { range: number; time: number }) {
             animate={{
               z: 10 - minDist(i),
               // rotateX: rotation,
-              y: pos,
+              y: `${pos / 14}vw`,
               opacity: minDist(i) < 2 ? 1 : 0,
               color: minDist(i) < 1 ? "white" : "#FFFFFF11",
               // scale: minDist(i) < 1 ? 1 : .5,
