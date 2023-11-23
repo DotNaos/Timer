@@ -12,6 +12,7 @@ import CountdownApp from "@/components/test";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Navbar } from "@/components/navbar";
+import Scene from "@/components/scene";
 
 export default function Home() {
 
@@ -26,6 +27,8 @@ export default function Home() {
       <Navbar onButtonClick={toggleRainbow} />
 
       {isRainbow ? <CountdownApp /> : <CountdownClock />}
+      <Scene />
+
     </div>
   );
 }
