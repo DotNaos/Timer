@@ -1,32 +1,19 @@
-'use client';
+"use client";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
-  NavbarMenu,
-  NavbarMenuToggle,
-  NavbarBrand,
-  NavbarItem,
-  NavbarMenuItem,
-} from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
 
+  NavbarItem,
+} from "@nextui-org/navbar";
+import { Button } from "@nextui-org/button";
 
 import { FaArrowRightLong } from "react-icons/fa6";
-import { GoDotFill } from "react-icons/go";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { HiMenuAlt4 } from "react-icons/hi";
-import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
 import { NavMenu } from "./navMenu";
+
 export const Navbar = () => {
-
-	const [dateHovered, setDateHovered] = useState(false);
-	const [menuHovered, setMenuHovered] = useState(false);
-
-
-
-
-
+  const [dateHovered, setDateHovered] = useState(false);
 
   return (
     <NextUINavbar
@@ -69,7 +56,7 @@ export const Navbar = () => {
                 width: dateHovered ? 0 : "auto",
               }}
             >
-              <GoDotFill />
+              {/* <GoDotFill /> */}
             </motion.div>
           </Button>
         </NavbarItem>
@@ -77,46 +64,6 @@ export const Navbar = () => {
         <NavbarItem>
           <NavMenu/>
         </NavbarItem>
-
-        <Dropdown
-          placement="bottom-end"
-          className="bg-white text-8xl uppercase text-default font-bold"
-
-        >
-          <NavbarItem>
-            <DropdownTrigger>
-              <Button
-                className="bg-[#e4e6ef] rounded-full text-default hover:bg-white"
-                onMouseEnter={() => {
-                  setMenuHovered(true);
-                }}
-                onMouseLeave={() => {
-                  setMenuHovered(false);
-                }}
-              >
-                Menu
-                <motion.div
-                  animate={{
-                    rotateZ: menuHovered ? 90 : 0,
-                    scale: menuHovered ? 1.25 : 1,
-                  }}
-                >
-                  <HiMenuAlt4 />
-                </motion.div>
-              </Button>
-            </DropdownTrigger>
-          </NavbarItem>
-          <DropdownMenu>
-            <DropdownItem>Hier</DropdownItem>
-            <DropdownItem>könnte</DropdownItem>
-            <DropdownItem>ihre</DropdownItem>
-            <DropdownItem>Werbung</DropdownItem>
-            <DropdownItem>stehen</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-        <NavbarMenu>
-          <NavbarMenuItem></NavbarMenuItem>
-        </NavbarMenu>
       </NavbarContent>
     </NextUINavbar>
   );

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 export const Snow = ({len = 50} : {len : number}) =>
 {
   return (
-    <motion.div className="absolute w-screen h-screen overflow-hidden scrollbar-hide">
+    <motion.div className="absolute w-screen h-screen overflow-hidden scrollbar-hide top-0 left-0">
       {Array.from({ length: len }).map((_, i) => {
         return (
 
