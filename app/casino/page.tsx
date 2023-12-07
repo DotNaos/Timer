@@ -1,9 +1,53 @@
-import { Progress } from "@nextui-org/react";
-import { motion } from "framer-motion";
-import { Dispatch, useState } from "react";
-import { start } from "repl";
+"use client";
+import { Divider } from "@nextui-org/react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import {getTime} from "@/util/timer";
 
-export default function Slot({ range, time }: { range: number; time: number }) {
+interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+const CountdownClock = () => {
+  const [timeLeft, setTimeLeft] = useState({} as TimeLeft);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const newTimeLeft = getTime();
+      setTimeLeft(newTimeLeft);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+
+
+  return (
+    <div
+      className="relative grid-cols-2
+      sm:grid-cols-4
+      grid
+      items-center justify-center
+      w-screen h-screen overflow-clip
+      pt-[5vh]
+      "
+    >
+      <Slot range={365} time={timeLeft.days} />
+      <Slot range={24} time={timeLeft.hours} />
+      <Slot range={60} time={timeLeft.minutes} />
+      <Slot range={60} time={timeLeft.seconds} />
+
+    </div>
+  );
+};
+
+export default CountdownClock;
+
+
+const Slot = ({ range, time }: { range: number; time: number }) => {
   const length = range.toString().length;
 
   const points = 8;
@@ -32,11 +76,7 @@ export default function Slot({ range, time }: { range: number; time: number }) {
     bg-gradient-to-r
     from-default-200 to-default-200 via-default-100
     shadow-lg shadow-default-200
-    `.concat(
-        length == 3
-          ? "w-[14vw] aspect-[2/5]"
-          : "w-[10vw]  aspect-[2/7]"
-      )}
+    `.concat(length == 3 ? "w-[14vw] aspect-[2/5]" : "w-[10vw]  aspect-[2/7]")}
     >
       {slotsArray.map((i) => {
         const sub = time - i;

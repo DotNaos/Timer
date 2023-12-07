@@ -23,7 +23,7 @@ const CameraControls = () => {
 };
 
 
-function Scene() {
+function Background() {
   const particleCount = 5000;
   const particles = new THREE.BufferGeometry();
   const positions = new Float32Array(particleCount * 3);
@@ -42,20 +42,17 @@ function Scene() {
   particles.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
   return (
-    <div
-    className="absolute w-screen h-screen -z-[0]">
-      <Canvas
-        camera={{ position: [0, 0, 35] }}
-      >
+    <div className="absolute w-screen h-screen -z-[0]">
+      <Canvas camera={{ position: [0, 0, 35] }}>
         <ambientLight intensity={1} />
         <pointLight position={[10, 10, 10]} />
-        <motion.group>
+        <motion.div>
           <points geometry={particles}>
             <pointsMaterial color={0x000000} size={0.08} />
           </points>
-        </motion.group>
+        </motion.div>
         <CameraControls />
-        <Animation  particles={particles}/>
+        <Animation particles={particles} />
       </Canvas>
     </div>
   );
@@ -88,4 +85,4 @@ function Animation({particles}: any) {
   return null;
 }
 
-export default Scene;
+export default Background;

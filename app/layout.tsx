@@ -4,8 +4,9 @@ import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import { Navbar } from "@/components/navbar";
-import { Link } from "@nextui-org/link";
+import { Link } from "@nextui-org/react";
 import clsx from "clsx";
+import { Snow } from "@/components/backgrounds/snow";
 
 export const metadata: Metadata = {
 	title: {
@@ -40,7 +41,10 @@ export default function RootLayout({
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="h-screen w-screen bg-[#f0f1fa]">
+            <Navbar />
+
             <main>{children}</main>
+						<Snow len={50}/>
           </div>
         </Providers>
       </body>

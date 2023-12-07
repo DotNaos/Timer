@@ -7,35 +7,18 @@ import {
   NavbarBrand,
   NavbarItem,
   NavbarMenuItem,
-} from "@nextui-org/navbar";
-import { Button } from "@nextui-org/button";
-import { Kbd } from "@nextui-org/kbd";
-import { Link } from "@nextui-org/link";
-import { Input } from "@nextui-org/input";
+} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
-import { link as linkStyles } from "@nextui-org/theme";
 
-import { siteConfig } from "@/config/site";
-import NextLink from "next/link";
-import clsx from "clsx";
-
-import { ThemeSwitch } from "@/components/theme-switch";
-import {
-  TwitterIcon,
-  GithubIcon,
-  DiscordIcon,
-  HeartFilledIcon,
-  SearchIcon,
-} from "@/components/icons";
-
-import { Logo } from "@/components/icons";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { GoDotFill } from "react-icons/go";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
-export const Navbar = ({onButtonClick} : {onButtonClick : any }) => {
+import { NavMenu } from "./navMenu";
+export const Navbar = () => {
 
 	const [dateHovered, setDateHovered] = useState(false);
 	const [menuHovered, setMenuHovered] = useState(false);
@@ -68,7 +51,6 @@ export const Navbar = ({onButtonClick} : {onButtonClick : any }) => {
             onMouseLeave={() => {
               setDateHovered(false);
             }}
-            onClick={onButtonClick}
           >
             <motion.div
               animate={{
@@ -90,6 +72,10 @@ export const Navbar = ({onButtonClick} : {onButtonClick : any }) => {
               <GoDotFill />
             </motion.div>
           </Button>
+        </NavbarItem>
+
+        <NavbarItem>
+          <NavMenu/>
         </NavbarItem>
 
         <Dropdown
