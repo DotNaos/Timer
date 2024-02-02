@@ -1,28 +1,13 @@
 "use client";
+import { CountdownContext } from "@/app/providers";
 import { Divider } from "@nextui-org/react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import {getTime} from "@/util/timer";
+import { useContext, useEffect, useState } from "react";
 
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
 
-const CountdownClock = () => {
-  const [timeLeft, setTimeLeft] = useState({} as TimeLeft);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const newTimeLeft = getTime();
-      setTimeLeft(newTimeLeft);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
+const CasinoClock = () => {
+  const timeLeft = useContext(CountdownContext);
 
 
   return (
@@ -44,7 +29,7 @@ const CountdownClock = () => {
   );
 };
 
-export default CountdownClock;
+export default CasinoClock;
 
 
 const Slot = ({ range, time }: { range: number; time: number }) => {

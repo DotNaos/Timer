@@ -8,9 +8,11 @@ import {
 import { Button } from "@nextui-org/button";
 
 import { FaArrowRightLong } from "react-icons/fa6";
+import { GoDotFill } from "react-icons/go";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { NavMenu } from "./navMenu";
+import { MenuToggle } from "./menuToggle";
+import {  NavMenu } from "./navMenu";
 
 export const Navbar = () => {
   const [dateHovered, setDateHovered] = useState(false);
@@ -18,7 +20,7 @@ export const Navbar = () => {
   return (
     <NextUINavbar
       maxWidth="full"
-      className="absolute bg-transparent bg-opacity-0 text-default px-[3vw] py-[1vw]"
+      className="absolute bg-transparent bg-opacity-0 text-default px-[3vw] py-[1vw] overflow-x-clip"
       isBlurred={false}
     >
       <NavbarContent
@@ -28,7 +30,10 @@ export const Navbar = () => {
         ABI Timer
       </NavbarContent>
 
-      <NavbarContent justify="end">
+      <NavbarContent
+        justify="end"
+        className="flex items-center justify-center text-center"
+      >
         <NavbarItem className="hidden sm:flex">
           <Button
             className="bg-[#2b2e3a] rounded-full uppercase hover:bg-[#0016ec] overflow-hidden"
@@ -56,15 +61,13 @@ export const Navbar = () => {
                 width: dateHovered ? 0 : "auto",
               }}
             >
-              {/* <GoDotFill /> */}
+              <GoDotFill />
             </motion.div>
           </Button>
         </NavbarItem>
-
-        <NavbarItem>
-          <NavMenu/>
-        </NavbarItem>
       </NavbarContent>
+
+      {/* <NavMenu /> */}
     </NextUINavbar>
   );
 };

@@ -40,11 +40,13 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="h-screen w-screen bg-[#f0f1fa]">
+          <div className="h-screen w-screen
+           bg-[#f0f1fa]
+          ">
             <Navbar />
 
             <main>{children}</main>
-						<Snow len={50}/>
+            {/* <Snow len={50}/> */}
           </div>
         </Providers>
       </body>
