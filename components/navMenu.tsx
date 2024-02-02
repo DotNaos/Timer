@@ -1,47 +1,65 @@
-import { motion } from "framer-motion";
-import { FaBars } from "react-icons/fa6";
-import { FaXmark } from "react-icons/fa6";
+"use client";
+import * as React from "react";
+import { useRef } from "react";
+import { motion, useCycle } from "framer-motion";
+import { MenuToggle } from "./menuToggle";
+import { MenuItem } from "./menuItem";
+import { Button } from "@nextui-org/button";
+
+
 export const NavMenu = () => {
+  const [isOpen, toggleOpen] = useCycle(false, true);
+  const containerRef = useRef(null);
+
   return (
-    <motion.nav>
+    <div className="relative w-10 h-10 overflow-visible bg-red-500">
       <motion.div
-        variants={{
-          open: {
-            opacity: 1,
-            x: 0,
-            transition: {
-              duration: 0.3,
-              ease: "easeInOut",
-            },
-          },
-          closed: {
-            opacity: 0,
-            x: "-100%",
-            transition: {
-              duration: 0.3,
-              ease: "easeInOut",
-            },
-          },
+        className="absolute right-0 top-0  bg-emerald-400  h-full aspect-square"
+        animate={{
+          width: isOpen ? "100%" : "100vh",
+          height: isOpen ? "100%" : "100vh",
         }}
-      >
-        <motion.div className="absolute top-[1vw] right-[1vw] text-[5vw] text-default cursor-pointer">
-          <FaXmark />
-        </motion.div>
-        <motion.div className="flex flex-col justify-center items-center h-screen w-screen">
-          <motion.div className="text-[10vw] text-default font-medium">
-            ABI Timer
-          </motion.div>
-          <motion.div className="text-[5vw] text-default font-medium">
-            Rainbow
-          </motion.div>
-          <motion.div className="text-[5vw] text-default font-medium">
-            Snow
-          </motion.div>
-          <motion.div className="text-[5vw] text-default font-medium">
-            Fireworks
-          </motion.div>
-        </motion.div>
-      </motion.div>
-    </motion.nav>
+        transition={{
+          duration: 2.5,
+          type: "spring",
+          damping: 50,
+          bounce: 10
+        }}
+        onClick={toggleOpen}
+      />
+    </div>
   );
 };
+
+
+const Navigation = () => {
+  const variants = {
+    open: {
+      transition: { staggerChildren: 0.07, delayChildren: 0.2 },
+      opacity: 1
+    },
+    closed: {
+      transition: { staggerChildren: 0.05, staggerDirection: -1 },
+      opacity: 0
+    },
+  };
+  const styles = [
+    {
+      "Rainbow" : 10
+    },
+    {
+      "casion" : 10
+    }
+  ]
+  return (
+    <motion.ul variants={variants}
+
+    className="absolute text-8xl text-white flex-col flex justify-center items-center ">
+      {styles.map((i, key) => (
+        <a key={i} href="/casino">Casino</a>
+      ))}
+    </motion.ul>
+  );
+
+
+}
