@@ -9,6 +9,7 @@ import { Button } from "@nextui-org/button";
 
 import { FaArrowRightLong } from "react-icons/fa6";
 import { GoDotFill } from "react-icons/go";
+import { GoDotFill } from "react-icons/go";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MenuToggle } from "./menuToggle";
@@ -33,6 +34,8 @@ export const Navbar = () => {
           </div>
         </NavbarItem>
       </NavbarContent>
+
+      {/* <NavMenu /> */}
     </NextUINavbar>
   );
 };
