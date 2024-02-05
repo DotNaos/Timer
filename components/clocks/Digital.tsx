@@ -1,5 +1,6 @@
 "use client";
 import { CountdownContext } from "@/app/providers";
+import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 
 const DigitalClock = () => {
@@ -64,118 +65,58 @@ const Digit = ({ value }: { value: number }) => {
 
   const segments = digits[value].split("");
 
+  const Hor = ({ seg }: any) => (
+    <div className="w-full px-1 flex flex-col">
+      <motion.div
+        className={`w-full h-1 border-[2px] border-transparent border-b-[2px] ${
+          segments[seg] === "1" ? "border-b-red-500" : "border-b-default-50"
+        } border-t-0
+
+        `}
+      ></motion.div>
+      <motion.div
+        className={`w-full h-1 border-[2px] border-transparent border-b-0  ${
+          segments[seg] === "1" ? "border-t-red-500" : "border-t-default-50"
+        }`}
+      ></motion.div>
+    </div>
+  );
+
+  const Vert = ({ seg }: any) => (
+    <div className="h-full flex">
+      <motion.div
+        className={`h-full w-1 border-[2px] border-transparent border-r-[2px] ${
+          segments[seg] === "1" ? "border-r-red-500" : "border-r-default-50"
+        } border-l-0
+
+        `}
+      ></motion.div>
+      <motion.div
+
+        className={`h-full w-1 border-[2px] border-transparent border-l-[2px] ${
+          segments[seg] === "1" ? "border-l-red-500" : "border-l-default-50"
+        } border-r-0
+
+
+        `}
+      ></motion.div>
+    </div>
+  );
+
+
   return (
     <div className="flex flex-col items-center justify-center h-24 w-12">
-      <div className="w-full px-1 flex flex-col">
-        <div
-          className={`w-full h-1 border-[2px] border-transparent border-b-[2px] ${
-            segments[0] === "1" ? "border-b-red-500" : "border-b-default-50"
-          } border-t-0
-
-        `}
-        ></div>
-        <div
-          className={`w-full h-1 border-[2px] border-transparent border-b-0  ${
-            segments[0] === "1" ? "border-t-red-500" : "border-t-default-50"
-          }`}
-        ></div>
-      </div>
+      <Hor seg={0} />
       <div className="flex justify-between w-full h-10">
-        <div className="h-full flex">
-          <div
-            className={`h-full w-1 border-[2px] border-transparent border-r-[2px] ${
-              segments[1] === "1" ? "border-r-red-500" : "border-r-default-50"
-            } border-l-0
-
-        `}
-          ></div>
-          <div
-            className={`h-full w-1 border-[2px] border-transparent border-l-[2px] ${
-              segments[1] === "1" ? "border-l-red-500" : "border-l-default-50"
-            } border-r-0
-
-        `}
-          ></div>
-        </div>
-        <div className="h-full flex">
-          <div
-            className={`h-full w-1 border-[2px] border-transparent border-r-[2px] ${
-              segments[2] === "1" ? "border-r-red-500" : "border-r-default-50"
-            } border-l-0
-
-        `}
-          ></div>
-          <div
-            className={`h-full w-1 border-[2px] border-transparent border-l-[2px] ${
-              segments[2] === "1" ? "border-l-red-500" : "border-l-default-50"
-            } border-r-0
-
-        `}
-          ></div>
-        </div>
+        <Vert seg={1} />
+        <Vert seg={2} />
       </div>
-      <div className="w-full px-1 flex flex-col">
-        <div
-          className={`w-full h-1 border-[2px] border-transparent border-b-[2px] ${
-            segments[3] === "1" ? "border-b-red-500" : "border-b-default-50"
-          } border-t-0
-
-        `}
-        ></div>
-        <div
-          className={`w-full h-1 border-[2px] border-transparent border-b-0  ${
-            segments[3] === "1" ? "border-t-red-500" : "border-t-default-50"
-          }`}
-        ></div>
-      </div>
+      <Hor seg={3} />
       <div className="flex justify-between w-full h-10">
-        <div className="h-full flex">
-          <div
-            className={`h-full w-1 border-[2px] border-transparent border-r-[2px] ${
-              segments[4] === "1" ? "border-r-red-500" : "border-r-default-50"
-            } border-l-0
-
-        `}
-          ></div>
-          <div
-            className={`h-full w-1 border-[2px] border-transparent border-l-[2px] ${
-              segments[4] === "1" ? "border-l-red-500" : "border-l-default-50"
-            } border-r-0
-
-        `}
-          ></div>
-        </div>
-        <div className="h-full flex">
-          <div
-            className={`h-full w-1 border-[2px] border-transparent border-r-[2px] ${
-              segments[5] === "1" ? "border-r-red-500" : "border-r-default-50"
-            } border-l-0
-
-        `}
-          ></div>
-          <div
-            className={`h-full w-1 border-[2px] border-transparent border-l-[2px] ${
-              segments[5] === "1" ? "border-l-red-500" : "border-l-default-50"
-            } border-r-0
-
-        `}
-          ></div>
-        </div>
+        <Vert seg={4} />
+        <Vert seg={5} />
       </div>
-      <div className="w-full px-1 flex flex-col">
-        <div
-          className={`w-full h-1 border-[2px] border-transparent border-b-[2px] ${
-            segments[6] === "1" ? "border-b-red-500" : "border-b-default-50"
-          } border-t-0
-
-        `}
-        ></div>
-        <div
-          className={`w-full h-1 border-[2px] border-transparent border-b-0  ${
-            segments[6] === "1" ? "border-t-red-500" : "border-t-default-50"
-          }`}
-        ></div>
-      </div>
+      <Hor seg={6} />
     </div>
   );
       };
