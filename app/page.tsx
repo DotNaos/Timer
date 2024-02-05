@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import NormalClock from "@/components/clocks/Normal";
+import DigitalClock from "@/components/clocks/Digital";
 
 
 export default function Home() {
@@ -13,8 +14,8 @@ export default function Home() {
       clock: <NormalClock />,
     },
     {
-      key: "Normal",
-      clock: <NormalClock />,
+      key: "Digital",
+      clock: <DigitalClock />,
     },
     {
       key: "Normal",
