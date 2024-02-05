@@ -18,7 +18,7 @@ export default function Home() {
       clock: <DigitalClock />,
     },
     {
-      key: "Normal",
+      key: "Pixel",
       clock: <NormalClock />,
     },
   ];

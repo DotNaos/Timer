@@ -12,7 +12,6 @@ import { GoDotFill } from "react-icons/go";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MenuToggle } from "./menuToggle";
-import {  NavMenu } from "./navMenu";
 import { ThemeSwitch } from "./theme-switch";
 
 export const Navbar = () => {
