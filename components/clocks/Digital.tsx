@@ -65,54 +65,49 @@ const Digit = ({ value }: { value: number }) => {
 
   const segments = digits[value].split("");
 
-  const Hor = ({ seg }: any) => (
-    <div className="w-full px-1 flex flex-col">
-      <motion.div
-        className={`w-full h-1 border-[2px] border-transparent border-b-[2px] ${
-          segments[seg] === "1" ? "border-b-red-500" : "border-b-default-50"
-        } border-t-0
 
-        `}
-      ></motion.div>
-      <motion.div
-        className={`w-full h-1 border-[2px] border-transparent border-b-0  ${
-          segments[seg] === "1" ? "border-t-red-500" : "border-t-default-50"
-        }`}
-      ></motion.div>
-    </div>
-  );
+  const Hor = ({ seg }: any) => {
+    const bg = segments[seg] === "1" ? "bg-red-500" : "bg-default-50";
 
-  const Vert = ({ seg }: any) => (
-    <div className="h-full flex">
-      <motion.div
-        className={`h-full w-1 border-[2px] border-transparent border-r-[2px] ${
-          segments[seg] === "1" ? "border-r-red-500" : "border-r-default-50"
-        } border-l-0
+    return (
+      <div className="w-full h-1 px-[12.5%]">
+        <div
+          className={`relative w-full h-full ${bg}`}
+        >
+          <div
+            className={`rotate-45 h-[75%] aspect-square  absolute left-0 -translate-x-1/2  top-1/2 -translate-y-1/2 ${bg}`}
+          ></div>
+          <div
+            className={`rotate-45 h-[75%] aspect-square  absolute right-0 translate-x-1/2  top-1/2 -translate-y-1/2 ${bg}`}
+          ></div>
+        </div>
+      </div>
+    );
+  }
 
-        `}
-      ></motion.div>
-      <motion.div
+    const Vert = ({ seg }: any) => {
+      const bg = segments[seg] === "1" ? "bg-red-500" : "bg-default-50";
+      return (
+       <div className="h-full w-1 py-[5%]">
+        <div className={`relative h-full w-full ${bg}`}>
+          <div className={`rotate-45 w-[75%] aspect-square ${bg} absolute left-1/2 -translate-x-1/2  top-0 -translate-y-1/2 `}></div>
+          <div className={`rotate-45 w-[75%] aspect-square ${bg} absolute left-1/2 -translate-x-1/2  bottom-0 translate-y-1/2`}></div>
+        </div>
+      </div>
+      )
 
-        className={`h-full w-1 border-[2px] border-transparent border-l-[2px] ${
-          segments[seg] === "1" ? "border-l-red-500" : "border-l-default-50"
-        } border-r-0
-
-
-        `}
-      ></motion.div>
-    </div>
-  );
+      };
 
 
   return (
     <div className="flex flex-col items-center justify-center h-24 w-12">
       <Hor seg={0} />
-      <div className="flex justify-between w-full h-10">
+      <div className="flex justify-between w-full h-[40%]">
         <Vert seg={1} />
         <Vert seg={2} />
       </div>
       <Hor seg={3} />
-      <div className="flex justify-between w-full h-10">
+      <div className="flex justify-between w-full h-[40%]">
         <Vert seg={4} />
         <Vert seg={5} />
       </div>
