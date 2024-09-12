@@ -31,7 +31,7 @@ export const CountdownContext = React.createContext<{
 });
 
 function CountdownProvider({ children }: any) {
-  const countdown = useCountdown("2024-04-19T00:00:00Z");
+  const countdown = useCountdown("2025-01-10T00:00:00Z");
 
   return (
     <CountdownContext.Provider value={countdown}>
